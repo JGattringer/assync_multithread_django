@@ -8,7 +8,7 @@ async def fetch(session, url):
 async def run():
     tasks = []
     async with ClientSession() as session:
-        for character_id in range(1, 827):  # Changed the range to include 1 to 827 (828 excluded)
+        for character_id in range(1, 827):
             task = ensure_future(
                 fetch(
                     session,
@@ -19,7 +19,7 @@ async def run():
 
         responses = await gather(*tasks)  # Awaiting all tasks in the tasks list
         for resp in responses:
-            print(resp["id"], resp["name"], resp["status"], resp["species"], resp["origin"]["name"], resp)
+            print(resp["id"], resp["name"], resp["status"], resp["species"], resp["origin"]["name"], resp["image"])
 
 
 loop = get_event_loop()
